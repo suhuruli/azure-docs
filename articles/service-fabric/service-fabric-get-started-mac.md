@@ -22,8 +22,6 @@ ms.author: saysa
 > * [Windows](service-fabric-get-started.md)
 > * [Linux](service-fabric-get-started-linux.md)
 > * [OSX](service-fabric-get-started-mac.md)
->
->  
 
 You can build Service Fabric applications to run on Linux clusters using Mac OS X. This article covers how to set up your Mac for development.
 
@@ -56,6 +54,10 @@ To setup a local Docker container and have a service fabric cluster running on i
         "fixed-cidr-v6": "fd00::/64"
     }
     ```
+
+    >[!TIP]
+    > On Windows, the "fixed-cidr-v6" field should be set to "2001:db8:1::/64"
+
     You can directly update this on daemon.json in your docker installation path (location of which might vary from machine to machine, e.g. - ~/Library/Containers/com.docker.docker/Data/database/com.docker.driver.amd64-linux/etc/docker/daemon.json). The advised way to update is - go to Docker Icon > Preferences > Daemon > Advanced and update it there.
 
 3. Start a Service Fabric One-box container instance with the image:
@@ -63,8 +65,10 @@ To setup a local Docker container and have a service fabric cluster running on i
     ```bash
     docker run -itd -p 19080:19080 --name sfonebox servicefabricoss/service-fabric-onebox
     ```
+    
     >[!TIP]
-    >By specifying a name for your container instance, you can handle it in a more readable manner. 
+    > * By specifying a name for your container instance, you can handle it in a more readable manner. 
+    > * If your application is listening on any ports, you need to specify additional ports using -p. For example, if your application is listening on port 8080, docker run -itd -p 19080:19080 -p 8080:8080 --name sfonebox servicefabricoss/service-fabric-onebox.
 
 4. Login to the Docker container in interactive ssh mode:
 
