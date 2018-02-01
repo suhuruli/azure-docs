@@ -50,6 +50,9 @@ Select **Container** from the list of **service templates**.
 
 In **Image Name**, enter "microsoft/iis:nanoserver", the [Windows Server Nano Server and IIS base image](https://hub.docker.com/r/microsoft/iis/). 
 
+> [!NOTE]
+> The base image of the container must match the host. The above will work with RS1 versions of Windows. If your cluster uses RS3, please use the "microsoft/iis:windowsservercore-1709" image for the container. 
+
 Name your service "MyContainerService", and click **OK**.
 
 ## Configure communication and container port-to-host port mapping
